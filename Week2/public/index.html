@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dessert Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dessert Generator</h1>   
+        </header>
+
+        <div class="input-section">
+        <form method="POST" action="/generate">
+            <div class="input-container">
+                <div class="input-card">
+                    <div class="input-header">
+                        <h2>Country</h2>
+                    </div>
+                    <p class="input-description">Enter a country or region</p>
+                    <input type="text" name="country" placeholder="e.g., France, Japan, Italy..." class="text-input">
+                </div>
+            </div>
+
+            <div class="input-container">
+                <div class="input-card">
+                    <div class="input-header">
+                    <h2>Craving</h2>
+                    </div>
+                    <p class="input-description">What are you in the mood for?</p>
+                    <input type="text" name="craving" placeholder="e.g., chocolate, fruity, creamy..." class="text-input">
+                </div>
+            </div>
+
+            <button type="submit" id="generateBtn" class="generate-button">
+                <span class="btn-text">Generate Dessert Adventure</span>
+            </button>
+        </form>
+        </div>
+
+    </div>
+
+    <script src="server.js"></script>
+</body>
+</html>
