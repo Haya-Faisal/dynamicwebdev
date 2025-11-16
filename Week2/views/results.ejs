@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dessert Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .result-highlight {
+            color: #a9372a;
+            font-weight: 600;
+        }
+        .recommendation-box {
+            background: rgba(106, 143, 175, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            border-left: 4px solid #a9372a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dessert Found!</h1>
+        </header>
+
+        <div class="results-section">
+            <div class="result-card">                
+                <p>Based on your search for <span class="result-highlight"><%= craving %></span> desserts from <span class="result-highlight"><%= country %></span></p>
+                
+                <div class="recommendation-box">
+                    <h3>We Recommend:</h3>
+                    <p class="recommendation-text"><%= recommendation %></p>
+                </div>
+
+                <p>This was search #<strong><%= searchCount %></strong> in our database</p>
+
+                <div class="action-buttons">
+                    <a href="/" class="generate-button">Search Again</a>
+                    <a href="/searches" class="generate-button">View All Searches</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
