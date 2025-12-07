@@ -1,0 +1,201 @@
+ *{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+ }
+
+ body{
+    background: #002466;
+    color: antiquewhite;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    padding: 20px;
+ }
+
+.container{
+    max-width: 1200px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+
+} 
+
+.header{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap:20px;
+}
+ 
+h1{
+    color: antiquewhite;
+} 
+
+.tile-info{
+    color: antiquewhite;
+}
+
+.back-btn{
+    padding: 10px 20px;
+    transition: ease-in 0.2s;
+    color: antiquewhite;
+}
+
+.back-btn:hover{
+    background: rgb(224, 210, 191);
+    color: #002466;
+}
+
+.drawing-area{
+    display: flex;
+    gap:30px;
+    justify-content: center;
+    flex-direction: row;
+}   
+.controls{
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+    min-width: 300px;
+    text-align: left; 
+}        
+       
+.control-section {
+    margin-bottom: 25px;
+}
+        
+.control-section h3 {
+    color: antiquewhite;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+  
+.color-bkg {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+        
+.bg-color-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s, border 0.2s;
+}
+        
+.bg-color-btn:hover {
+    transform: scale(1.1);
+}
+        
+.color-btn.active {
+    border-color: antiquewhite;
+    transform: scale(1.1);
+}
+        
+.current-bkg {
+    visibility: hidden;
+}
+
+.color-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+        
+.color-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s, border 0.2s;
+}
+        
+.color-btn:hover {
+    transform: scale(1.1);
+}
+        
+.color-btn.active {
+    border-color: antiquewhite;
+    transform: scale(1.1);
+}
+        
+.current-color {
+    visibility: hidden;
+}
+        
+.symmetry-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+        
+.symmetry-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid antiquewhite;
+    color: antiquewhite;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+}
+        
+.symmetry-btn:hover {
+    background: rgba(78, 205, 196, 0.2);
+}
+        
+.symmetry-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: antiquewhite;
+    min-width: 40px;
+}
+        
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+        
+.action-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+        
+.save-btn {
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    color: white;
+    flex: 2;
+}
+        
+.save-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+}
+        
+.clear-btn {
+    background: linear-gradient(45deg, #ff6b6b, #c04848);
+    color: white;
+    flex: 1;
+}
+        
+.clear-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+        

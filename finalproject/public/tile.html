@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw on Tile</title>
+    <link rel="stylesheet" href="/tile.css">
+    <!-- p5.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="tile-info" id="tile-info">Loading tile...</div>
+            <h1>Draw Geometric Pattern</h1>
+            <a href="/gallery" class="back-btn"> Back to Gallery</a>
+        </div>
+        
+        <div class="drawing-area">
+            <div class="canvas-container">
+                <!-- Canvas will be inserted here by p5.js -->
+                <div id="canvas-container"></div>
+            </div>
+            
+            <div class="controls">
+
+                <div class="control-section">
+                   <h3>Choose Background Color</h3>
+                   <div class="color-picker" id="background-picker">
+                        <!-- Background colors will be added by JavaScript -->
+                    </div>
+                    <div class="current-color" id="current-background"></div>
+
+
+                    <h3> Choose Color</h3>
+                    <div class="color-picker" id="color-picker">
+                        <!-- Colors will be added by JavaScript -->
+                    </div>
+                    <div class="current-color" id="current-color"></div>
+                </div>
+                
+                <div class="control-section">
+                    <h3> Symmetry</h3>
+                    <div class="symmetry-control">
+                        <button class="symmetry-btn" id="symmetry-decrease">-</button>
+                        <span class="symmetry-value" id="symmetry-value">6</span>
+                        <button class="symmetry-btn" id="symmetry-increase">+</button>
+                    </div>
+                </div>
+                
+                <div class="control-section">
+                    <h3> Actions</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn save-btn" id="save-btn">Save Tile</button>
+                        <button class="action-btn clear-btn" id="clear-btn"> Clear Canvas</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- Your drawing JavaScript -->
+    <script src="/tile.js"></script>
+</body>
+</html>
