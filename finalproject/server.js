@@ -153,10 +153,8 @@ app.post("/api/tiles/:id", async (req, res) => {
     return res.status(400).json({ error: "No image data provided" });
   }
 
-  // Save the image file
-  const result = saveTileImage(tileId, image);
-
-  if (result.success) {
+  try {
+    const result = await saveTileImage(tileId, image);
     res.json({
       success: true,
       message: "Tile saved as image file",
@@ -164,10 +162,11 @@ app.post("/api/tiles/:id", async (req, res) => {
       url: result.url,
       filename: result.filename,
     });
-  } else {
+  } catch (error) {
+    console.error("Error saving tile:", error);
     res
       .status(500)
-      .json({ error: "Failed to save image", details: result.error });
+      .json({ error: "Failed to save image", details: error.message });
   }
 });
 
