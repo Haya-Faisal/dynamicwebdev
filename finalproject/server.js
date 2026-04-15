@@ -21,29 +21,26 @@ function ensureTilesDirectory() {
 }
 
 // Get all existing tile images
-function getExistingTiles() {
-  ensureTilesDirectory();
+async function getExistingTiles() {
+  const { blobs } = await list();
 
   const tiles = [];
-  const files = fs.readdirSync(TILES_DIR);
 
-  // Create tile objects for existing images
-  files.forEach((filename) => {
-    if (filename.match(/^tile-(\d+)\.(jpg|jpeg|png)$/)) {
-      const tileId = parseInt(filename.match(/^tile-(\d+)\./)[1]);
-
-      // Calculate grid position
+  // Build tiles from blobs
+  blobs.forEach((blob) => {
+    const match = blob.pathname.match(/^tile-(\d+)\.jpg$/);
+    if (match) {
+      const tileId = parseInt(match[1]);
       const row = Math.floor((tileId - 1) / COLS);
       const col = (tileId - 1) % COLS;
-
       tiles.push({
         id: tileId,
-        image: filename, // Just the filename, not full path
-        url: `/tiles/${filename}`,
+        image: blob.pathname,
+        url: blob.url,
         position: { row, col },
-        colors: ["#660033"], // Default
-        symmetry: 6, // Default
-        lastModified: getFileModifiedTime(tileId),
+        colors: ["#660033"],
+        symmetry: 6,
+        lastModified: blob.uploadedAt,
       });
     }
   });
@@ -53,10 +50,9 @@ function getExistingTiles() {
     if (!tiles.find((t) => t.id === i)) {
       const row = Math.floor((i - 1) / COLS);
       const col = (i - 1) % COLS;
-
       tiles.push({
         id: i,
-        image: null, // No image file yet
+        image: null,
         url: null,
         position: { row, col },
         colors: ["#660033"],
@@ -66,9 +62,7 @@ function getExistingTiles() {
     }
   }
 
-  // Sort by tile ID
   tiles.sort((a, b) => a.id - b.id);
-
   return tiles;
 }
 
@@ -85,7 +79,7 @@ function getFileModifiedTime(tileId) {
 }
 
 // Save tile as image file
-const { put } = require("@vercel/blob");
+const { put, list } = require("@vercel/blob");
 
 async function saveTileImage(tileId, base64Image) {
   const base64Data = base64Image.replace(/^data:image\/jpeg;base64,/, "");
@@ -115,18 +109,22 @@ function deleteTileImage(tileId) {
 // API ROUTES
 
 // GET all tiles
-app.get("/api/tiles", (req, res) => {
-  const tiles = getExistingTiles();
-
-  res.json({
-    tiles: tiles,
-    gridConfig: {
-      totalTiles: TOTAL_TILES,
-      cols: COLS,
-      rows: ROWS,
-      tileSize: TILE_SIZE,
-    },
-  });
+app.get("/api/tiles", async (req, res) => {
+  try {
+    const tiles = await getExistingTiles();
+    res.json({
+      tiles,
+      gridConfig: {
+        totalTiles: TOTAL_TILES,
+        cols: COLS,
+        rows: ROWS,
+        tileSize: TILE_SIZE,
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching tiles:", error);
+    res.status(500).json({ error: "Failed to load tiles" });
+  }
 });
 
 // GET specific tile
